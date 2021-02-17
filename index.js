@@ -5,7 +5,9 @@ function getHeadAndBodyChunks(chunks) {
   const bodyChunks = [];
 
   chunks.forEach(chunk => {
-    if ((chunk.attributes.src && chunk.attributes.src.includes("_head")) || chunk.attributes.href) {
+    if ((chunk.attributes?.src && chunk.attributes.src.includes("_head"))
+      || (chunk.attributes?.href && chunk.attributes?.rel !== 'prefetch')
+    ) {
       headChunks.push(chunk);
     } else {
       bodyChunks.push(chunk);
